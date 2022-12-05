@@ -1,0 +1,12 @@
+Withdraw: 100.0
+Checking balance : 900.0
+
+Withdraw: 200.0
+Checking balance : 700.0
+
+Withdraw: 250.0
+Checking balance : 450.0
+
+Withdraw: 500.0
+Checking balance : 500.0
+

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -53,7 +54,8 @@ public class Account {
 	}
 
 	public double calcCheckingWithdraw(double amount) {
-		checkingBalance = (checkingBalance - amount);
+		this.checkingBalance = (checkingBalance - amount);
+		//OptionMenu.writeTransaction(Integer.valueOf(this.customerNumber), "withdrawal", "checking", amount, checkingBalance);
 		return checkingBalance;
 	}
 
@@ -91,7 +93,8 @@ public class Account {
 				double amount = input.nextDouble();
 				if ((checkingBalance - amount) >= 0 && amount >= 0) {
 					calcCheckingWithdraw(amount);
-					System.out.println("\nCurrent Checkings Account Balance: " + moneyFormat.format(checkingBalance));
+					System.out.println("\nCurrent Checkings Account Balance: " + moneyFormat.format(this.checkingBalance));
+					OptionMenu.writeTransaction(this,"Withdraw", "Checking", amount, checkingBalance);
 					end = true;
 				} else {
 					System.out.println("\nBalance Cannot be Negative.");
@@ -99,6 +102,8 @@ public class Account {
 			} catch (InputMismatchException e) {
 				System.out.println("\nInvalid Choice.");
 				input.next();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
@@ -134,6 +139,7 @@ public class Account {
 				if ((checkingBalance + amount) >= 0 && amount >= 0) {
 					calcCheckingDeposit(amount);
 					System.out.println("\nCurrent Checkings Account Balance: " + moneyFormat.format(checkingBalance));
+					OptionMenu.writeTransaction(this,"Deposit", "Checking", amount, checkingBalance);
 					end = true;
 				} else {
 					System.out.println("\nBalance Cannot Be Negative.");
@@ -141,6 +147,8 @@ public class Account {
 			} catch (InputMismatchException e) {
 				System.out.println("\nInvalid Choice.");
 				input.next();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
