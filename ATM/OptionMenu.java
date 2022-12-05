@@ -30,6 +30,7 @@ public class OptionMenu {
 						end = true;
 						break;
 					case 3:
+						//writeAccToFile();
 						end = true;
 						break;
 					default:
@@ -40,7 +41,7 @@ public class OptionMenu {
 				menuInput.next();
 			}
 		}
-		writeAccToFile();
+		//writeAccToFile();
 		System.out.println("\nThank You for using this ATM.\n");
 		menuInput.close();
 		System.exit(0);
@@ -130,6 +131,7 @@ public class OptionMenu {
 					getSaving(acc);	//TODO - Go to Savings acc
 					break;
 				case 3:
+					writeAccToFile();
 					mainMenu();
 					break;
 				default:
@@ -272,7 +274,7 @@ public class OptionMenu {
 			int pinNum = Integer.parseInt(record[1]);
 			Double checkBal = Double.parseDouble(record[2]);
 			Double savBal = Double.parseDouble(record[3]);
-			Account acc = new Account(customerNum, pinNum, checkBal, savBal);
+			//Account acc = new Account(customerNum, pinNum, checkBal, savBal);
 			data.put(customerNum, new Account(customerNum, pinNum, checkBal, savBal));
 		}
 		reader.close();

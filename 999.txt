@@ -1,0 +1,6 @@
+Deposit: 1000.0
+Checking balance : 1000.0
+
+Transfer from Checking: 250.0
+To Saving balance : 250.0
+

@@ -94,7 +94,7 @@ public class Account {
 				if ((checkingBalance - amount) >= 0 && amount >= 0) {
 					calcCheckingWithdraw(amount);
 					System.out.println("\nCurrent Checkings Account Balance: " + moneyFormat.format(this.checkingBalance));
-					OptionMenu.writeTransaction(this,"Withdraw", "Checking", amount, checkingBalance);
+					OptionMenu.writeTransaction(this,"Withdraw", "Checkings", amount, checkingBalance);
 					end = true;
 				} else {
 					System.out.println("\nBalance Cannot be Negative.");
@@ -118,6 +118,7 @@ public class Account {
 				if ((savingBalance - amount) >= 0 && amount >= 0) {
 					calcSavingWithdraw(amount);
 					System.out.println("\nCurrent Savings Account Balance: " + moneyFormat.format(savingBalance));
+					OptionMenu.writeTransaction(this,"Withdraw", "Savings", amount, checkingBalance);
 					end = true;
 				} else {
 					System.out.println("\nBalance Cannot Be Negative.");
@@ -125,6 +126,8 @@ public class Account {
 			} catch (InputMismatchException e) {
 				System.out.println("\nInvalid Choice.");
 				input.next();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
@@ -164,6 +167,7 @@ public class Account {
 				if ((savingBalance + amount) >= 0 && amount >= 0) {
 					calcSavingDeposit(amount);
 					System.out.println("\nCurrent Savings Account Balance: " + moneyFormat.format(savingBalance));
+					OptionMenu.writeTransaction(this,"Deposit", "Saving", amount, checkingBalance);
 					end = true;
 				} else {
 					System.out.println("\nBalance Cannot Be Negative.");
@@ -171,6 +175,8 @@ public class Account {
 			} catch (InputMismatchException e) {
 				System.out.println("\nInvalid Choice.");
 				input.next();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}
@@ -193,8 +199,8 @@ public class Account {
 						if ((savingBalance + amount) >= 0 && (checkingBalance - amount) >= 0 && amount >= 0) {
 							calcCheckTransfer(amount);
 							System.out.println("\nCurrent Savings Account Balance: " + moneyFormat.format(savingBalance));
-							System.out.println(
-									"\nCurrent Checkings Account Balance: " + moneyFormat.format(checkingBalance));
+							System.out.println("\nCurrent Checkings Account Balance: " + moneyFormat.format(checkingBalance));
+							OptionMenu.writeTransaction(this,"Transfer from Checking", "(New) saving", amount, savingBalance);
 							end = true;
 						} else {
 							System.out.println("\nBalance Cannot Be Negative.");
@@ -221,6 +227,7 @@ public class Account {
 							calcSavingTransfer(amount);
 							System.out.println("\nCurrent checkings account balance: " + moneyFormat.format(checkingBalance));
 							System.out.println("\nCurrent savings account balance: " + moneyFormat.format(savingBalance));
+							OptionMenu.writeTransaction(this,"Transfer from Saving", "(New) checking", amount, checkingBalance);
 							end = true;
 						} else {
 							System.out.println("\nBalance Cannot Be Negative.");
@@ -236,6 +243,8 @@ public class Account {
 			} catch (InputMismatchException e) {
 				System.out.println("\nInvalid Choice.");
 				input.next();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
 		}
 	}

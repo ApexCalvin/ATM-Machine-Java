@@ -1,0 +1,15 @@
+Deposit: 35000.0
+Checking balance : 35000.0
+
+Transfer from Checking: 12000.0
+(New) saving balance : 12000.0
+
+Withdraw: 700.0
+Savings balance : 23000.0
+
+Deposit: 4354345.0
+Checking balance : 4354345.0
+
+Transfer from Checking: 53456.0
+(New) saving balance : 53456.0
+
